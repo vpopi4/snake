@@ -16,7 +16,11 @@ namespace snake
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            form = new Form1();
+            Application.Run(form);
         }
+
+        static public Form1 form;
     }
+
 }

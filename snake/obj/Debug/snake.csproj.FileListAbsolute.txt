@@ -8,4 +8,3 @@ C:\Users\Student\source\repos\snake\snake\obj\Debug\snake.csproj.GenerateResourc
 C:\Users\Student\source\repos\snake\snake\obj\Debug\snake.csproj.CoreCompileInputs.cache
 C:\Users\Student\source\repos\snake\snake\obj\Debug\snake.exe
 C:\Users\Student\source\repos\snake\snake\obj\Debug\snake.pdb
-C:\Users\Student\source\repos\snake\snake\obj\Debug\snake.Snake.resources

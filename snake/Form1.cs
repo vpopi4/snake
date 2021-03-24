@@ -19,7 +19,13 @@ namespace snake
         {
             InitializeComponent();
             this.snake = new Snake();
+            this.Controls.Add(this.snake.header);
             timer1.Start();
+        }
+
+        public void addBody(PictureBox element)
+        {
+            this.Controls.Add(element);
         }
 
         private void right_Click(object sender, EventArgs e)
@@ -45,7 +51,7 @@ namespace snake
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            snake.header.BringToFront();
         }
 
     }
@@ -54,13 +60,25 @@ namespace snake
     {
         public Snake()
         {
-            this.header = new System.Windows.Forms.PictureBox();
-            this.body.Add(new System.Windows.Forms.PictureBox());
+            
+            this.header = new PictureBox();
+            //this.body.Add(new PictureBox());
+            initElemm(this.header, new Point(0, 0));
+            
+        }
+
+        void initElemm(PictureBox element, Point locaton)
+        {
+            Program.form.addBody(element);
+            element.Location = locaton;
+            element.Size = new Size(20, 20);
+            element.BackColor = Color.Coral;
         }
 
         void addBody()
         {
-            this.body.Add(new System.Windows.Forms.PictureBox());
+            PictureBox element = new PictureBox();
+            this.body.Add(element);
         }
 
         void move(string direction)
@@ -80,7 +98,7 @@ namespace snake
 
         }
 
-        System.Windows.Forms.PictureBox header;
+        public PictureBox header;
         List<System.Windows.Forms.PictureBox> body;
         Queue<Point> moveArr;
 
