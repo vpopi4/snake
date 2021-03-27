@@ -10,16 +10,21 @@ using System.Windows.Forms;
 
 namespace snake
 {
-    
+    delegate void AddBody(PictureBox element);
     public partial class Form1 : Form
     {
-        Snake snake;
+        Snake thisSnake;
+        String direction = "";
 
-        public Form1()
+        public Form1(Snake snake)
         {
             InitializeComponent();
-            this.snake = new Snake();
-            this.Controls.Add(this.snake.header);
+            this.thisSnake = snake;
+            this.Controls.Add(this.thisSnake.header);
+            foreach (PictureBox element in thisSnake.body)
+            {
+                this.Controls.Add(element);
+            }
             timer1.Start();
         }
 
@@ -30,78 +35,34 @@ namespace snake
 
         private void right_Click(object sender, EventArgs e)
         {
-
+            direction = "right";
         }
 
         private void down_Click(object sender, EventArgs e)
         {
-
+            direction = "down";
         }
 
         private void left_Click(object sender, EventArgs e)
         {
-
+            direction = "left";
         }
 
         private void up_Click(object sender, EventArgs e)
         {
-            
+            direction = "up";
 
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            snake.header.BringToFront();
-        }
-
-    }
-
-    public class Snake
-    {
-        public Snake()
-        {
-            
-            this.header = new PictureBox();
-            //this.body.Add(new PictureBox());
-            initElemm(this.header, new Point(0, 0));
-            
-        }
-
-        void initElemm(PictureBox element, Point locaton)
-        {
-            Program.form.addBody(element);
-            element.Location = locaton;
-            element.Size = new Size(20, 20);
-            element.BackColor = Color.Coral;
-        }
-
-        void addBody()
-        {
-            PictureBox element = new PictureBox();
-            this.body.Add(element);
-        }
-
-        void move(string direction)
-        {
-            switch (direction)
+            foreach (PictureBox element in thisSnake.body)
             {
-                case "up":
-                    Point newPoint = new Point(header.Location.X, header.Location.Y - 10);
-                    header.Location = newPoint;
-
-                    foreach (System.Windows.Forms.PictureBox i in body)
-                    {
-                        i.Location = moveArr.Peek();
-                    }
-                    break;
+                element.BringToFront();
             }
-
+            thisSnake.header.BringToFront();
+            thisSnake.move(direction);
         }
 
-        public PictureBox header;
-        List<System.Windows.Forms.PictureBox> body;
-        Queue<Point> moveArr;
-
     }
-
 }

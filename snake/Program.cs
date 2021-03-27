@@ -16,11 +16,10 @@ namespace snake
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            form = new Form1();
+            Snake thisSnake = new Snake();
+            Form1 form = new Form1(thisSnake);
             Application.Run(form);
         }
-
-        static public Form1 form;
     }
 
 }
